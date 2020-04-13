@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <!-- development version, includes helpful console warnings -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+
+</head>
+<body>
+    <h1>PAGEABLE EXAMPLE APPLICATION</h1>
+    <div id="app">
+        <table>
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Password</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="profile in profiles">
+                    <th>{{profile.id}}</th>
+                    <td>{{profile.name}}</td>
+                    <td>{{profile.description}}</td>
+                    <td>{{profile.password}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <button type="button" @click="previousPage" :disabled="currentPage === 0">previous</button>
+        <span>{{currentPage + 1}}</span>
+        <button type="button" @click="nextPage" :disabled="lastPage">next</button>
+        <div>
+            <button
+                    v-for="number in totalPages"
+                    :disabled="number - 1 === currentPage"
+                    @click="loadPage(number-1)">{{number}}</button>
+        </div>
+    </div>
+    <script src="js/main.js"></script>
+
+</body>
+</html>
